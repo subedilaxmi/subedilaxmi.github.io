@@ -1,0 +1,24 @@
+@if (testimonials.length) {
+  <section class="section section-counseling" id="testimonialsSection">
+    <div class="container">
+      <div class="text-center mx-auto section-head fade-up">
+        <p class="section-eyebrow">In their words</p>
+        <h2 class="section-title">What students say.</h2>
+      </div>
+      <div class="row g-4 mt-2" id="testimonialGrid">
+        @for (item of testimonials; track item.name) {
+          <div class="col-md-4 fade-up">
+            <figure class="testimonial-card h-100">
+              <i class="bi bi-quote quote-mark"></i>
+              <blockquote class="mb-3">{{ item.quote }}</blockquote>
+              <figcaption>
+                <strong>{{ item.name }}</strong>
+                <span class="d-block small text-muted-soft">{{ item.role }}</span>
+              </figcaption>
+            </figure>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+}

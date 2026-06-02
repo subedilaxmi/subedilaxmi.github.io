@@ -1,0 +1,27 @@
+<main class="container">
+  <div class="article-hero">
+    <a class="article-back" routerLink="/" fragment="insights"><i class="bi bi-arrow-left"></i> Back to insights</a>
+  </div>
+
+  @if (article(); as a) {
+    <article class="pb-5">
+      <span class="post-tag">{{ a.tag || 'Article' }}</span>
+      <h1 class="article-title mt-2">{{ a.title }}</h1>
+      <p class="article-meta mt-2">{{ metaLine() }}</p>
+      <hr class="my-4" />
+      <div class="article-body">
+        @for (paragraph of a.body; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+
+      <div class="article-cta mt-5">
+        <h2 class="h4 mb-2">Want to know more?</h2>
+        <p class="text-muted-soft">If anything here speaks to your situation, I’m happy to talk it through.</p>
+        <a class="btn btn-brand rounded-pill px-4" [href]="emailHref()">
+          <i class="bi bi-envelope me-2"></i>Email me about this
+        </a>
+      </div>
+    </article>
+  }
+</main>

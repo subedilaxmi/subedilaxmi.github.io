@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg fixed-top site-navbar" [class.scrolled]="scrolled()" id="mainNav" aria-label="Primary">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/" fragment="home">
+      <span class="brand-logo"><img src="img/profile.png" alt="Laxmi Subedi" /></span>
+      <span class="brand-name">Laxmi Subedi</span>
+    </a>
+
+    <div class="d-flex align-items-center gap-2 d-lg-none">
+      <button class="theme-toggle js-theme-toggle btn rounded-circle" type="button"
+              (click)="toggleTheme()" [attr.aria-pressed]="theme.isDark"
+              aria-label="Switch between light and dark mode" title="Toggle dark mode">
+        <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+        <i class="bi bi-sun-fill theme-icon-light"></i>
+      </button>
+      <button class="navbar-toggler border-0" type="button" id="navToggler" (click)="openNav()"
+              aria-controls="navMenu" [attr.aria-expanded]="drawerOpen()" aria-label="Open menu">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+
+    <div class="nav-drawer" [class.open]="drawerOpen()" id="navMenu">
+      <div class="nav-drawer-head">
+        <span class="navbar-brand d-flex align-items-center gap-2 m-0">
+          <span class="brand-logo"><img src="img/profile.png" alt="Laxmi Subedi" /></span>
+          <span class="brand-name">Laxmi Subedi</span>
+        </span>
+        <button type="button" class="nav-close" id="navClose" (click)="closeNav()" aria-label="Close menu">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+        <li class="nav-item"><a class="nav-link" [class.active]="activeId() === 'about'" routerLink="/" fragment="about" (click)="closeNav()">About</a></li>
+        <li class="nav-item"><a class="nav-link" [class.active]="activeId() === 'medicine'" routerLink="/" fragment="medicine" (click)="closeNav()">Medicine</a></li>
+        <li class="nav-item"><a class="nav-link" [class.active]="activeId() === 'counseling'" routerLink="/" fragment="counseling" (click)="closeNav()">Counseling</a></li>
+        <li class="nav-item"><a class="nav-link" [class.active]="activeId() === 'insights'" routerLink="/" fragment="insights" (click)="closeNav()">Insights</a></li>
+        <li class="nav-item nav-cta-item ms-lg-2">
+          <a class="btn btn-brand rounded-pill px-3" routerLink="/" fragment="contact" (click)="closeNav()">Get in touch</a>
+        </li>
+        <li class="nav-item d-none d-lg-block ms-lg-2">
+          <button class="theme-toggle js-theme-toggle btn rounded-circle" type="button"
+                  (click)="toggleTheme()" [attr.aria-pressed]="theme.isDark"
+                  aria-label="Switch between light and dark mode" title="Toggle dark mode">
+            <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+            <i class="bi bi-sun-fill theme-icon-light"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="nav-backdrop" [class.show]="drawerOpen()" id="navBackdrop" (click)="closeNav()"></div>
+</nav>

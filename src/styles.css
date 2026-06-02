@@ -187,7 +187,9 @@ a {
     overflow: hidden;
     flex-shrink: 0;
     background: var(--surface-tint);
-    border: 1.5px solid color-mix(in srgb, var(--brand) 34%, transparent);
+    /* Same blue→teal family as the gradient name (a dotted border can't be a
+       true gradient, so this is a blend of the two name colours). */
+    border: 2px dotted color-mix(in srgb, var(--medical), var(--counsel));
     box-shadow: 0 2px 8px -4px rgba(15, 23, 42, .35);
 }
 
@@ -202,17 +204,40 @@ a {
     font-weight: 700;
     font-size: 1.05rem;
     line-height: 1.2;
-    color: var(--heading);
+    background: linear-gradient(110deg, var(--medical), var(--counsel));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .site-navbar .nav-link {
     color: var(--body-text);
     font-weight: 500;
     padding-inline: .9rem;
+    position: relative;
 }
 
-.site-navbar .nav-link:hover, .site-navbar .nav-link.active {
+.site-navbar .nav-link:hover {
     color: var(--heading);
+}
+
+.site-navbar .nav-link.active {
+    color: var(--heading);
+    font-weight: 600;
+}
+
+/* Gradient underline marking the section currently in view (desktop nav) */
+@media (min-width: 992px) {
+    .site-navbar .nav-link.active::after {
+        content: "";
+        position: absolute;
+        left: .9rem;
+        right: .9rem;
+        bottom: -.15rem;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(110deg, var(--medical), var(--counsel));
+    }
 }
 
 .navbar-toggler {
@@ -791,6 +816,11 @@ a {
 .footer-brand-name {
     font-size: 1.05rem;
     line-height: 1.25;
+    background: linear-gradient(110deg, var(--medical), var(--counsel));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    width: fit-content;
 }
 
 .footer-brand-role {
@@ -1130,7 +1160,9 @@ a {
 }
 
 @media (max-width: 360px) {
-    .brand-name {
+    /* Hide only the top-bar brand name on very small screens; keep it in the
+       open drawer where there's room. */
+    .site-navbar > .container > .navbar-brand .brand-name {
         display: none;
     }
 }

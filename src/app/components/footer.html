@@ -1,0 +1,45 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-12 col-lg-5">
+        <div class="footer-brand d-flex align-items-center gap-2 mb-3">
+          <span class="brand-logo"><img src="img/profile.png" alt="Laxmi Subedi" /></span>
+          <div>
+            <strong class="footer-brand-name d-block">Laxmi Subedi</strong>
+            <span class="footer-brand-role footer-muted">Medical Student &amp; Education Counselor</span>
+          </div>
+        </div>
+        <p class="footer-about">
+          Helping students choose their path with honest, personal guidance - alongside my
+          medical studies and research interest.
+        </p>
+        <a class="btn footer-email-btn rounded-pill" [href]="contact.buildMailto()">
+          <span class="footer-email-icon"><i class="bi bi-envelope-fill"></i></span>
+          <span class="footer-email-label">Email me</span>
+        </a>
+      </div>
+
+      <div class="col-6 col-lg-3 offset-lg-1">
+        <h2 class="footer-heading">Explore</h2>
+        <ul class="footer-links list-unstyled mb-0">
+          <li><a routerLink="/" fragment="about">About</a></li>
+          <li><a routerLink="/" fragment="medicine">Medicine</a></li>
+          <li><a routerLink="/" fragment="counseling">Counseling</a></li>
+          <li><a routerLink="/" fragment="insights">Insights</a></li>
+        </ul>
+      </div>
+
+      <div class="col-6 col-lg-3">
+        <h2 class="footer-heading">Get in touch</h2>
+        <ul class="footer-links list-unstyled mb-0">
+          <li><a routerLink="/" fragment="contact">Contact form</a></li>
+          <li><a [href]="contact.buildMailto()">Send an email</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="footer-divide" />
+
+    <p class="text-center small footer-muted mb-0">© <span>{{ year }}</span> Laxmi Subedi. All rights reserved.</p>
+  </div>
+</footer>

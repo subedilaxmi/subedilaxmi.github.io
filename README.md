@@ -1,4 +1,4 @@
-# Laxmi Subedi - Portfolio Website
+# Laxmi Subedi - Portfolio Website (Angular 21)
 
 A clean, honest, responsive personal-branding website. Two clearly-separated fields:
 
@@ -8,114 +8,151 @@ A clean, honest, responsive personal-branding website. Two clearly-separated fie
 The design is **slate-minimal**: one refined slate primary colour with lots of
 whitespace, and the blue/teal accents used only to tag the two fields - calm and premium.
 
-Built with **Bootstrap 5.3** + a small custom layer. Features:
+Built with **Angular 21** (standalone components, signals, zoneless change detection) on top
+of **Bootstrap 5.3**. The look and layout are identical to the original static site — this is
+the same design re-built as an Angular app. Features:
 
 - 🌗 **Dark / light mode** (remembers the visitor's choice)
 - 📱 **Mobile-first** responsive layout
-- ✍️ **Insights** - each article opens on its **own page** (`article.html`), with **pagination**
+- ✍️ **Insights** - each article opens on its **own route** (`/insights/<slug>`), with **pagination**
 - 📨 **Email-only contact**, with the address **hidden from bots** and **inline form validation**
 - 🔒 **No phone or social links** - just email, keeping your footprint small for now
 
-```
-lax-portfolio-website/
-├── index.html      → the home page
-├── article.html    → one reusable page that shows any article
-├── content.js      → ⭐ your profile email, articles, (and real testimonials)
-├── styles.css      → colours, fonts, light/dark
-├── script.js       → dark mode, email, insights+pagination, form
-├── article.js      → renders the chosen article
-└── README.md       → this guide
-```
+---
 
-> Bootstrap and icons load from a CDN, so you need internet the first time it opens.
+## 🧱 Requirements
+
+- **Node.js ≥ 20.19, ≥ 22.12, or ≥ 24** (Angular 21's supported range).
+  If you use `nvm`: `nvm install 22 && nvm use 22`.
+- Bootstrap, Bootstrap Icons and Angular are installed via **npm** (`npm install`).
+  Google Fonts still load from a CDN (so the very first load needs internet).
 
 ---
 
-## ▶️ How to view it
-**Double-click `index.html`.** Or run a local server: `python3 -m http.server 8000`.
+## ▶️ Run it
 
-> Article pages use a `?id=` web address. Opening via a local server (or once it's
-> hosted online) is the most reliable way to test the "Read more" links.
+```bash
+npm install        # once
+npm start          # dev server → http://localhost:4200
+npm run build      # production build → dist/lax-portfolio-website/browser
+```
+
+---
+
+## 🗂️ Project structure
+
+```
+lax-portfolio-website/
+├── src/
+│   ├── index.html                 → app shell (Google Fonts + <base href>)
+│   ├── main.ts                    → bootstraps the app
+│   ├── styles.css                 → ⭐ the original design system (colours, fonts, light/dark)
+│   └── app/
+│       ├── app.ts / app.config.ts / app.routes.ts
+│       ├── layout.ts / layout.html         → app shell: navbar + <router-outlet> + footer
+│       │                                     + back-to-top (rendered once for every route)
+│       ├── core/                           → shared logic + data
+│       │   ├── content.ts                  → ⭐ your email, articles, testimonials (+ types)
+│       │   ├── theme.service.ts            → dark/light, persisted
+│       │   ├── contact.service.ts          → builds the (bot-hidden) email + mailto links
+│       │   └── reveal.directive.ts         → fade-up reveal-on-scroll
+│       ├── components/                      → reusable pieces
+│       │   ├── navbar · footer · back-to-top     (used on every page)
+│       │   └── insights · testimonials · contact-form   (the dynamic sections)
+│       └── pages/
+│           ├── home.ts / home.html         → the page (hero/about/medicine/counseling
+│           │                                  are inline; dynamic sections are components)
+│           ├── article.ts / article.html   → renders one article (route /insights/:slug)
+│           └── not-found.ts / .html        → 404 page (unknown URL or unknown article slug)
+├── public/img/profile.png           → photo + favicon (served at /img/profile.png)
+├── legacy/                        → the original static HTML/CSS/JS, kept for reference
+└── angular.json / package.json / tsconfig*.json
+```
+
+> The CSS in `src/styles.css` is the original file, unchanged — that's what keeps the design
+> pixel-identical to the static version.
+
+**Routing & layout.** `Layout` is the shell that renders the navbar, footer and back-to-top
+once around a `<router-outlet>` — the same chrome on every page. The navbar/footer in-page links
+use `routerLink="/"` + `fragment`, so from an article or the 404 page they navigate home and
+scroll to the right section. A `canMatch` guard checks the article slug, so an unknown slug
+(or any unknown URL) falls through to the **404 page** with the URL preserved.
 
 ---
 
 ## ✏️ Make it yours - the essentials
 
-**1. Your email** - open `content.js` and edit the two parts:
-```js
+**1. Your email** - open `src/app/core/content.ts` and edit the two parts:
+```ts
 profile: {
-  name: "Laxmi Subedi",
-  emailUser:   "hello",            // 👈 before the @
-  emailDomain: "laxmisubedi.com"   // 👈 after the @
+  name: 'Laxmi Subedi',
+  emailUser: 'hello',            // 👈 before the @
+  emailDomain: 'laxmisubedi.com' // 👈 after the @
 }
 ```
 This is the single place the email is set. It powers the contact form, the "Email me"
-links, and the article pages. The address is assembled by JavaScript, so it **never
-appears as plain text** in the page - spam bots can't easily harvest it.
+links, and the article pages. The address is assembled at runtime, so it **never appears as
+plain text** in the page source - spam bots can't easily harvest it.
 
-**2. Your photo** - make an `img` folder, add `img/laxmi.png`, then change the
-`src="https://placehold.co/..."` line in `index.html` to `src="img/laxmi.png"`.
+**2. Your photo** - replace `public/img/profile.png` with your own (same filename), or change
+the `src="img/profile.png"` references in the components.
 
-**3. Your name / intro text** - edit the wording directly in `index.html`.
+**3. Your name / intro text** - the hero, about, medicine and counseling copy lives in
+`src/app/pages/home.html`; the insights/testimonials/contact sections are in `src/app/components/`.
 
 ---
 
 ## 📨 How the contact form works
-1. The visitor fills it in. If anything is missing or the email looks wrong, a **red
-   message appears right under that field** (inline validation) - no page reload.
-2. When it's valid and they press **Send via email**, their email app opens with the
-   name, email, topic, and message **pre-filled and addressed to you**.
+1. The visitor fills it in. If anything is missing or the email looks wrong, a **red message
+   appears right under that field** (inline validation) - no page reload.
+2. When it's valid and they press **Send via email**, their email app opens with the name,
+   email, topic, and message **pre-filled and addressed to you**.
 3. They press send; it lands in your inbox; you reply normally over email.
 
-No third-party service, no signup, nothing storing visitor data. (It uses the visitor's
-email app - that's the trade-off for keeping it simple and private. If you ever want
-messages to arrive without that step, I can switch it to a form service later.)
+No third-party service, no signup, nothing storing visitor data.
 
 ---
 
 ## ✍️ Articles (Insights) - add your own
 
-Articles live in `content.js` under `articles`. Each one automatically gets a card on the
-home page **and** its own page at `article.html?id=<slug>`.
+Articles live in `src/app/core/content.ts` under `articles`. Each one automatically gets a
+card on the home page **and** its own route at `/insights/<slug>`.
 
 Copy a block and edit it:
-```js
+```ts
 {
-  slug: "my-new-article",          // unique, lowercase-with-dashes (becomes the web address)
-  tag: "Study tips",
-  cover: "teal",                   // "teal" or "blue"
-  icon: "bi-compass",              // any icon from https://icons.getbootstrap.com
-  title: "My article title",
-  excerpt: "One line shown on the card.",
+  slug: 'my-new-article',          // unique, lowercase-with-dashes (becomes the URL)
+  tag: 'Study tips',
+  cover: 'teal',                   // 'teal' or 'blue'
+  icon: 'bi-compass',              // any icon from https://icons.getbootstrap.com
+  title: 'My article title',
+  excerpt: 'One line shown on the card.',
   readMins: 4,
   body: [
-    "First paragraph…",
-    "Second paragraph…"
-  ]
+    'First paragraph…',
+    'Second paragraph…',
+  ],
 },
 ```
-- **Read more** takes the reader to that article's page (not a pop-up).
-- **Pagination** appears automatically once you have more than `ARTICLES_PER_PAGE`
-  articles (default **6** - change it near the top of section 7 in `script.js`).
+- **Read more** routes to that article's page.
+- **Pagination** appears automatically once you have more than `ARTICLES_PER_PAGE` articles
+  (default **6** - change it at the top of `src/app/components/insights.ts`).
 
 ---
 
 ## 🗣️ Testimonials - only real ones
-`testimonials` in `content.js` is **empty on purpose**, so the "What students say" section
-stays hidden. Nothing is invented. When a real student gives you genuine feedback (with
-permission), add a block and the section appears on its own:
-```js
-{ quote: "Their real words.", name: "Name or initials", role: "Undergraduate applicant" },
+`testimonials` in `core/content.ts` is **empty on purpose**, so the "What students say" section
+stays hidden. When a real student gives genuine feedback (with permission), add a block and the
+section appears on its own:
+```ts
+{ quote: 'Their real words.', name: 'Name or initials', role: 'Undergraduate applicant' },
 ```
-
-This - and not adding made-up numbers or ratings - is what keeps the site credible, so no
-one can question your claims later.
 
 ---
 
 ## 🌗 Dark mode & colours
-The moon/sun button switches themes and remembers the choice. To adjust the palette, edit
-the top of `styles.css`:
+The moon/sun button switches themes and remembers the choice. To adjust the palette, edit the
+top of `src/styles.css`:
 ```css
 :root {
   --brand:   #334155;   /* slate - buttons, links, primary UI */
@@ -128,12 +165,15 @@ Dark-mode versions are in the `[data-bs-theme="dark"]` block just below.
 ---
 
 ## 🚀 Put it online for free
-- **Netlify** - drag this folder onto https://app.netlify.com/drop → instant link.
-- **GitHub Pages** - push to a repo, enable Pages in Settings.
-- **Vercel** - import at https://vercel.com.
+This is a client-side Angular SPA; build first (`npm run build`), then deploy
+`dist/lax-portfolio-website/browser`:
+- **Netlify / Vercel / Cloudflare Pages** - build command `npm run build`, publish the
+  `browser` folder above. Add an SPA fallback (rewrite all routes → `index.html`) so deep
+  links like `/insights/...` work.
+- **GitHub Pages** - serve the `browser` folder; set `<base href>` to your repo subpath if needed.
 
 ---
 
 ## Sections (home page)
 Hero · About (the two fields) · Medicine & Research · Counseling (how I help) ·
-Insights (article pages + pagination) · Testimonials (hidden until real) · Contact (email only).
+Insights (article routes + pagination) · Testimonials (hidden until real) · Contact (email only).

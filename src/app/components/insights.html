@@ -1,0 +1,46 @@
+<section class="section" id="insights">
+  <div class="container">
+    <div class="text-center mx-auto section-head fade-up">
+      <p class="section-eyebrow">Insights</p>
+      <h2 class="section-title">Notes I’ve written.</h2>
+      <p class="text-muted-soft mt-3">Reflections on study, growth, and medicine - in my own words. I add to these over time.</p>
+    </div>
+
+    <div class="row g-4 mt-2" id="insightsGrid">
+      @for (article of pageArticles(); track article.slug) {
+        <div class="col-md-4 fade-up">
+          <article class="post-card h-100">
+            <div class="post-cover cover-{{ article.cover }}">
+              <i class="bi {{ article.icon }}"></i>
+            </div>
+            <div class="post-body">
+              <span class="post-tag">{{ article.tag }}</span>
+              <h3 class="h5">{{ article.title }}</h3>
+              <p class="small text-muted-soft">{{ article.excerpt }}</p>
+              <a class="post-link" [routerLink]="['/insights', article.slug]">Read more <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      }
+    </div>
+
+    @if (totalPages() > 1) {
+      <nav class="insights-pager" id="insightsPager" aria-label="Insights pages">
+        <button type="button" [disabled]="currentPage() === 1"
+                (click)="showPage(currentPage() - 1, true)">
+          <i class="bi bi-chevron-left"></i>
+        </button>
+        @for (p of pages(); track p) {
+          <button type="button" [attr.aria-current]="p === currentPage() ? 'true' : null"
+                  (click)="showPage(p, true)">
+            {{ p }}
+          </button>
+        }
+        <button type="button" [disabled]="currentPage() === totalPages()"
+                (click)="showPage(currentPage() + 1, true)">
+          <i class="bi bi-chevron-right"></i>
+        </button>
+      </nav>
+    }
+  </div>
+</section>

@@ -1,0 +1,15 @@
+# Compiled output
+/dist
+/out-tsc
+/tmp
+
+# Dependencies
+/node_modules
+
+# Angular cache
+/.angular/cache
+
+# Misc
+/.idea
+*.log
+.DS_Store
