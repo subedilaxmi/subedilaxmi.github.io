@@ -76,7 +76,7 @@ export class ContactForm {
     const message = this.message.trim();
     const divider = '──────────────────────────────';
 
-    const subject = `Enquiry:: Personal Portfolio - (${this.topic}) - ${name}`;
+    const subject = `Enquiry:: Personal Portfolio - ${name}`;
     const body =
       `Hello Laxmi,\n\n` +
       `You have a new message from your portfolio website.\n\n` +
