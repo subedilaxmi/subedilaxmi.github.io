@@ -95,5 +95,18 @@ export class ContactForm {
       message: `Thanks, ${name.split(' ')[0]}. Your email app is opening - just press send.`,
       type: 'success',
     });
+
+    this.resetForm();
+  }
+
+  /** Clear the fields back to their defaults after an email is sent. */
+  private resetForm(): void {
+    this.name = '';
+    this.email = '';
+    this.topic = 'Career & course guidance';
+    this.message = '';
+    this.invalidName.set(false);
+    this.invalidEmail.set(false);
+    this.invalidMessage.set(false);
   }
 }
