@@ -1,7 +1,7 @@
 {
   "name": "lax-portfolio-website",
   "version": "1.0.0",
-  "description": "Laxmi Subedi - Medical Student & Education Counselor portfolio",
+  "description": "Laxmi Subedi - Business Management Student & Education Counselor portfolio",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
