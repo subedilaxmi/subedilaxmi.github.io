@@ -72,12 +72,23 @@ export class ContactForm {
     }
 
     const name = this.name.trim();
-    const subject = `Website enquiry (${this.topic}) - ${name}`;
+    const email = this.email.trim();
+    const message = this.message.trim();
+    const divider = '──────────────────────────────';
+
+    const subject = `Enquiry:: Personal Portfolio - (${this.topic}) - ${name}`;
     const body =
-      `Name: ${name}\n` +
-      `Email: ${this.email.trim()}\n` +
-      `Topic: ${this.topic}\n\n` +
-      `Message:\n${this.message.trim()}\n`;
+      `Hello Laxmi,\n\n` +
+      `You have a new message from your portfolio website.\n\n` +
+      `${divider}\n` +
+      `  Name   :  ${name}\n` +
+      `  Email  :  ${email}\n` +
+      `  Topic  :  ${this.topic}\n` +
+      `${divider}\n\n` +
+      `Message\n` +
+      `${message}\n\n` +
+      `${divider}\n` +
+      `Sent from laxmisubedi.com.np\n`;
 
     window.location.href = this.contact.buildMailto(subject, body);
     this.feedback.set({

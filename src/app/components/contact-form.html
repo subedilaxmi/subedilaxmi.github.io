@@ -17,6 +17,10 @@
             </div>
           </li>
           <li>
+            <span class="contact-icon"><i class="bi bi-geo-alt"></i></span>
+            <div><strong>Location</strong><span>Kathmandu, Nepal</span></div>
+          </li>
+          <li>
             <span class="contact-icon"><i class="bi bi-clock"></i></span>
             <div><strong>Response time</strong><span>Usually within a day. Email is the best way to reach me.</span></div>
           </li>
@@ -29,21 +33,21 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="fullName" class="form-label">Full name</label>
-                <input type="text" class="form-control form-control-lg" [class.is-invalid]="invalidName()"
+                <input type="text" class="form-control" [class.is-invalid]="invalidName()"
                        id="fullName" name="name" placeholder="Your name" required
                        [(ngModel)]="name" (blur)="validateName()" (input)="invalidName() && validateName()" />
                 <div class="invalid-feedback">Please enter your name.</div>
               </div>
               <div class="col-md-6">
                 <label for="emailAddress" class="form-label">Your email</label>
-                <input type="email" class="form-control form-control-lg" [class.is-invalid]="invalidEmail()"
+                <input type="email" class="form-control" [class.is-invalid]="invalidEmail()"
                        id="emailAddress" name="email" placeholder="you@email.com" required
                        [(ngModel)]="email" (blur)="validateEmail()" (input)="invalidEmail() && validateEmail()" />
                 <div class="invalid-feedback">Please enter a valid email address.</div>
               </div>
               <div class="col-12">
                 <label for="helpTopic" class="form-label">What’s it about?</label>
-                <select class="form-select form-select-lg" id="helpTopic" name="topic" [(ngModel)]="topic">
+                <select class="form-select" id="helpTopic" name="topic" [(ngModel)]="topic">
                   @for (t of topics; track t) {
                     <option [value]="t">{{ t }}</option>
                   }
@@ -51,13 +55,13 @@
               </div>
               <div class="col-12">
                 <label for="messageBody" class="form-label">Message</label>
-                <textarea class="form-control form-control-lg" [class.is-invalid]="invalidMessage()"
+                <textarea class="form-control" [class.is-invalid]="invalidMessage()"
                           id="messageBody" name="message" rows="4" placeholder="Tell me a little about your situation…" required
                           [(ngModel)]="message" (blur)="validateMessage()" (input)="invalidMessage() && validateMessage()"></textarea>
                 <div class="invalid-feedback">Please write a short message.</div>
               </div>
               <div class="col-12 d-grid">
-                <button type="submit" class="btn btn-brand btn-lg rounded-pill" id="submitButton">
+                <button type="submit" class="btn btn-brand btn-sm rounded-pill py-md-2" id="submitButton">
                   <i class="bi bi-send me-2"></i>Send via email
                 </button>
               </div>
