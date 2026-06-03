@@ -86,8 +86,8 @@ scroll to the right section. A `canMatch` guard checks the article slug, so an u
 ```ts
 profile: {
   name: 'Laxmi Subedi',
-  emailUser: 'hello',            // 👈 before the @
-  emailDomain: 'laxmisubedi.com' // 👈 after the @
+  emailUser: 'contact.laxmisubedi',  // 👈 before the @
+  emailDomain: 'laxmisubedi.com.np' // 👈 after the @
 }
 ```
 This is the single place the email is set. It powers the contact form, the "Email me"

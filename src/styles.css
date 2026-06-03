@@ -7,9 +7,9 @@
     --brand-strong: #1e293b;
     --brand-text: #ffffff;
 
-    /* Field accents: blue = medicine, teal = counseling */
-    --medical: #2563eb;
-    --medical-soft: #f3f7ff;
+    /* Field accents: blue = business, teal = counseling */
+    --business: #2563eb;
+    --business-soft: #f3f7ff;
     --counsel: #0d9488;
     --counsel-soft: #f1faf8;
 
@@ -33,8 +33,8 @@
     --brand-strong: #ffffff;
     --brand-text: #0f172a;
 
-    --medical: #60a5fa;
-    --medical-soft: #0f1c33;
+    --business: #60a5fa;
+    --business-soft: #0f1c33;
     --counsel: #2dd4bf;
     --counsel-soft: #0e2724;
 
@@ -76,7 +76,7 @@ a {
 }
 
 .text-gradient {
-    background: linear-gradient(110deg, var(--medical), var(--counsel));
+    background: linear-gradient(110deg, var(--business), var(--counsel));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -189,7 +189,7 @@ a {
     background: var(--surface-tint);
     /* Same blue→teal family as the gradient name (a dotted border can't be a
        true gradient, so this is a blend of the two name colours). */
-    border: 2px dotted color-mix(in srgb, var(--medical), var(--counsel));
+    border: 2px dotted color-mix(in srgb, var(--business), var(--counsel));
     box-shadow: 0 2px 8px -4px rgba(15, 23, 42, .35);
 }
 
@@ -204,7 +204,7 @@ a {
     font-weight: 700;
     font-size: 1.05rem;
     line-height: 1.2;
-    background: linear-gradient(110deg, var(--medical), var(--counsel));
+    background: linear-gradient(110deg, var(--business), var(--counsel));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -236,7 +236,7 @@ a {
         bottom: -.15rem;
         height: 2px;
         border-radius: 2px;
-        background: linear-gradient(110deg, var(--medical), var(--counsel));
+        background: linear-gradient(110deg, var(--business), var(--counsel));
     }
 }
 
@@ -328,7 +328,7 @@ a {
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background: radial-gradient(50% 42% at 85% 6%, color-mix(in srgb, var(--medical) 10%, transparent), transparent 60%),
+    background: radial-gradient(50% 42% at 85% 6%, color-mix(in srgb, var(--business) 10%, transparent), transparent 60%),
     radial-gradient(42% 38% at 6% 26%, color-mix(in srgb, var(--counsel) 9%, transparent), transparent 55%);
 }
 
@@ -378,8 +378,8 @@ a {
     animation: float 4s ease-in-out infinite;
 }
 
-.chip-medicine i {
-    color: var(--medical);
+.chip-business i {
+    color: var(--business);
 }
 
 .chip-counseling i {
@@ -406,7 +406,7 @@ a {
     }
 }
 
-/* ---------- Field badges (Medicine vs Counseling) ---------- */
+/* ---------- Field badges (Business vs Counseling) ---------- */
 .field-badge {
     display: inline-flex;
     align-items: center;
@@ -419,9 +419,9 @@ a {
     border-radius: 999px;
 }
 
-.field-badge.medicine {
-    color: var(--medical);
-    background: var(--medical-soft);
+.field-badge.business {
+    color: var(--business);
+    background: var(--business-soft);
 }
 
 .field-badge.counseling {
@@ -444,8 +444,8 @@ a {
     box-shadow: var(--shadow-card);
 }
 
-.field-card-medicine {
-    border-top-color: var(--medical);
+.field-card-business {
+    border-top-color: var(--business);
 }
 
 .field-card-counseling {
@@ -468,8 +468,8 @@ a {
     transform: translateX(3px);
 }
 
-.field-link-medicine {
-    color: var(--medical);
+.field-link-business {
+    color: var(--business);
 }
 
 .field-link-counseling {
@@ -477,15 +477,15 @@ a {
 }
 
 /* ---------- Field-tinted sections (very subtle) ---------- */
-.section-medical {
-    background: var(--medical-soft);
+.section-business {
+    background: var(--business-soft);
 }
 
 .section-counseling {
     background: var(--counsel-soft);
 }
 
-/* ---------- Medicine focus cards ---------- */
+/* ---------- Business focus cards ---------- */
 .focus-card {
     background: var(--surface);
     border: 1px solid var(--hairline);
@@ -509,9 +509,9 @@ a {
     margin-bottom: 1.1rem;
 }
 
-.icon-medicine {
-    background: var(--medical-soft);
-    color: var(--medical);
+.icon-business {
+    background: var(--business-soft);
+    color: var(--business);
 }
 
 /* ---------- Counseling service cards ---------- */
@@ -590,8 +590,8 @@ a {
 }
 
 .cover-blue {
-    background: var(--medical-soft);
-    color: var(--medical);
+    background: var(--business-soft);
+    color: var(--business);
 }
 
 .post-body {
@@ -816,7 +816,7 @@ a {
 .footer-brand-name {
     font-size: 1.05rem;
     line-height: 1.25;
-    background: linear-gradient(110deg, var(--medical), var(--counsel));
+    background: linear-gradient(110deg, var(--business), var(--counsel));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

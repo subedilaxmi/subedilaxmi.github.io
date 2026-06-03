@@ -22,7 +22,7 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         component: Home,
-        title: 'Laxmi Subedi - Medical Student & Education Counselor',
+        title: 'Laxmi Subedi - Business Management Student & Education Counselor',
       },
       {
         path: 'insights/:slug',

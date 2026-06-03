@@ -7,7 +7,7 @@ export class ContactService {
   private readonly profile = SITE_CONTENT.profile;
 
   /** Joined at runtime so the address isn't sitting in the markup as plain text. */
-  readonly email = `${this.profile.emailUser || 'hello'}@${this.profile.emailDomain || 'example.com'}`;
+  readonly email = `${this.profile.emailUser || 'contact.laxmisubedi'}@${this.profile.emailDomain || 'example.com'}`;
 
   buildMailto(subject?: string, body?: string): string {
     const query: string[] = [];

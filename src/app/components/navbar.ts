@@ -15,7 +15,7 @@ export class Navbar implements OnDestroy {
   readonly drawerOpen = signal(false);
   readonly activeId = signal<string>('');
 
-  readonly sections = ['about', 'medicine', 'counseling', 'insights'];
+  readonly sections = ['about', 'business', 'counseling', 'insights'];
 
   @HostListener('window:scroll')
   onScroll(): void {

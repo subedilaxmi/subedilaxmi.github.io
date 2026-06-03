@@ -40,7 +40,7 @@ export const SITE_CONTENT: SiteContent = {
   // exposed as plain text in the markup. Edit both parts to change it.
   profile: {
     name: 'Laxmi Subedi',
-    emailUser: 'hello',
+    emailUser: 'contact.laxmisubedi',
     emailDomain: 'gmail.com',
   },
 
@@ -81,18 +81,18 @@ export const SITE_CONTENT: SiteContent = {
       ],
     },
     {
-      slug: 'career-in-medicine',
-      tag: 'Medicine',
+      slug: 'career-in-business',
+      tag: 'Business',
       cover: 'blue',
-      icon: 'bi-heart-pulse',
-      title: 'Thinking about a career in medicine?',
+      icon: 'bi-briefcase',
+      title: 'Thinking about a career in business?',
       excerpt: 'An honest reflection on the journey, from a student currently on it.',
       readMins: 4,
       body: [
-        'Medicine is a meaningful path, but it is also a long one. As someone currently studying it, here is my honest take.',
-        'It is demanding - academically and emotionally. The hours are long and the responsibility is real. But few things are as rewarding as learning to care for people well.',
-        'You do not need to be the most brilliant person in the room. Consistency, empathy, and a willingness to keep learning matter more than raw talent.',
-        'If you are considering medicine, talk to people already on the path before you commit. I am always glad to share what the journey honestly looks like.',
+        'Business is a versatile path, but it is also a competitive one. As someone currently studying it, here is my honest take.',
+        'It is demanding in its own way - you have to keep up with markets, sharpen your numbers, and learn to work well with people. But few things are as rewarding as seeing an idea turn into something that works.',
+        'You do not need to be the smartest person in the room. Curiosity, discipline, and a willingness to keep learning matter more than raw talent.',
+        'If you are considering business or management studies, talk to people already on the path before you commit. I am always glad to share what the journey honestly looks like.',
       ],
     },
   ],

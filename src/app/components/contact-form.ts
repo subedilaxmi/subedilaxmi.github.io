@@ -31,7 +31,7 @@ export class ContactForm {
     'University selection',
     'Application support',
     'Study-abroad guidance',
-    'Medical-path mentoring',
+    'Business-path mentoring',
     'Something else',
   ];
 
