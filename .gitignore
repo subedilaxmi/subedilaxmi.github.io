@@ -9,6 +9,16 @@
 # Angular cache
 /.angular/cache
 
+# Build artifacts that must never land in repo root
+/index.html
+/404.html
+/main-*.js
+/styles-*.css
+/chunk-*.js
+/polyfills-*.js
+/media/
+/img/
+
 # Misc
 /.idea
 *.log
